@@ -141,7 +141,7 @@ function getApi() {
 // Uncomment the code below:
 // ==============================================
 
-var getApiEs6 = async () => { // same as `async function createUserArr(promise, arr) {}`
+var getApiEs6 = async () => { // same as `async function getApiEs6(promise, arr) {}`
   try {
     var promise = await fetch("https://jsonplaceholder.typicode.com/users");
     var json = await promise.json(); // using await in this way is very similar to using the .then() method
@@ -152,7 +152,71 @@ var getApiEs6 = async () => { // same as `async function createUserArr(promise, 
   };
 };
 
-getApiEs6();
+// getApiEs6();
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Comment line 155.
+
+// We start by setting our function as an "async" function. This lets JS know that there will be promises to handle.
+// The try {} block is there to check for functions. Once we have finished our code to be executed, we use
+// a catch {} block to display any errors we encounter. It is similar to the .catch() method used previously.
+// We then set a variable to hold our returned promise from our fetch call. Once we declare it, we add "await" in front of our fetch call.
+// Await works very similarly to .then(), it lets the function resolve that promise before moving on to the next line of code.
+// We can chain await statements together similarly to how we chain .then() methods together. 
+
+// Now lets start working with our data.
+
+// Uncomment the code below:
+// ==============================================
+
+// var namesArr = getApiEs6()
+// .then(data => {
+//   namesArr = data;
+//   console.log("New Array", namesArr)
+// })
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Comment the code above.
+
+// Now we have saved our response into a global variable as an array and can use it throughout our script.
+// Notice how we set up our variable. We called our async function as the value, but added a .then() method at
+// after and saved our namesArr as our returned data. 
+// This ensures that we have received our response and our array is being populated with the correct information.
+
+// Now lets say we want to only gather the names of the users from our newly created array.
+// Lets expand on our previous code.
+
+// Uncomment the code below:
+// ==============================================
+
+var namesArr = getApiEs6()
+.then(data => {
+  namesArr = data;
+  console.log("New Array", namesArr);
+  return namesArr;
+})
+.then(arr => {
+  for (var i = 0; i < arr.length; i++) {
+
+    arr[i] = arr[i].name;
+  }
+  return arr
+})
+.then(newArr => {
+  console.log("New Array with Names", newArr);
+  namesArr = newArr;
+  return namesArr;
+}).catch(err => console.log(err));
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// We have used multiple methods for handling asynchronous functions as well as mixing and matching those methods.
+// Some things to keep in mind:
+//  We cannot use "async" on the top level, or global scale, of our application script. It must be inside a function.
+//  The default action for fetch is "GET" (gets information). Other actions include "POST" (creating information), 
+//    "PUT"(updating existing information), and "DELETE"(delete existing information).
+//  Both of these methods do the same thing. Use the one that your are most comfortable with.
+
+// Hopefully you have a better understanding of fetch and asynchronous functions.
+// There are many free API's you can work with in your applications.
+// Well done and happy coding!

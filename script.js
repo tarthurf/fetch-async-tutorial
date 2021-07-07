@@ -116,12 +116,12 @@ console.log("Hello World!");
 
 function getApi() {
   fetch('https://jsonplaceholder.typicode.com/users')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data
-  })
-  .catch(err => console.log(err));
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      return data
+    })
+    .catch(err => console.log(err));
 };
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,18 +137,22 @@ function getApi() {
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Comment the code above.
 
-// We get back an array with 10 user accounts. Lets creat a function that will grab all of the usernames and 
-// put them in an array. Lets use the fat arrow function that was introduced in ES6.
+// We get back an array with 10 user accounts. Lets see a different way to write this function using ES6 async/await.
 // Uncomment the code below:
 // ==============================================
 
-var usernamesArr = []
-
-var creatNameArr = (promise) => {
-  var dataArr = promise;
-  console.log(dataArr)
+var getApiEs6 = async () => { // same as `async function createUserArr(promise, arr) {}`
+  try {
+    var promise = await fetch("https://jsonplaceholder.typicode.com/users");
+    var json = await promise.json(); // using await in this way is very similar to using the .then() method
+    console.log(await json);
+    return await json
+  } catch (err) { // same as a .catch() method
+    throw (err);
+  };
 };
 
-creatNameArr(getApi())
+getApiEs6();
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Comment the code above.

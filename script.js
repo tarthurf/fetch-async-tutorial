@@ -110,3 +110,45 @@ console.log("Hello World!");
 
 // Comment the code above.
 
+// Great! Now that we understand how to use fetch and async funcitons properly we can start working with our data.
+// Uncomment the code below:
+// ==============================================
+
+function getApi() {
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    return data
+  })
+  .catch(err => console.log(err));
+};
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// So we have created a function that will get the response object from an API, convert it to JSON format, and 
+// return our object so its ready to work with.
+// Lets call that fucntion and look at our object.
+// Uncomment the code below:
+// ==============================================
+
+// getApi();
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Comment the code above.
+
+// We get back an array with 10 user accounts. Lets creat a function that will grab all of the usernames and 
+// put them in an array. Lets use the fat arrow function that was introduced in ES6.
+// Uncomment the code below:
+// ==============================================
+
+var usernamesArr = []
+
+var creatNameArr = (promise) => {
+  var dataArr = promise;
+  console.log(dataArr)
+};
+
+creatNameArr(getApi())
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
